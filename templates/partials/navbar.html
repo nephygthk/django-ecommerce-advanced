@@ -1,0 +1,76 @@
+<header>
+    <div class="px-3 py-2 text-bg-dark">
+      <div class="container-fluid">
+          <div class="row">
+              <a class="col-2 mt-2 text-white text-decoration-none fw-bold me-0">
+                <h4>Gee Commerce</h4>
+              </a>
+              <div class="col-6 me-0 mt-1 ms-0 mb-0">
+                  <form class="d-flex w-100" role="search">
+                    <input type="text" class="form-control" placeholder="Search ....">
+                    <button class="btn btn-success fw-bold " type="submit">Search</button>
+                  </form>
+              </div>
+              <div class="col-4">
+                  <div class="row">
+                      <div class="col-4">
+                          <p class="small mb-0">Hello, Sign in</p>
+                          <div class="dropdown mt-0">
+                              <a class="text-decoration-none fw-bold text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Account & list
+                              </a>
+
+                              <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Account</a>
+                                  <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Orders</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item fw-bold" href="#">Sign Out</a></li>
+<!--                                <li><a class="dropdown-item fw-bold" href="#">Sign In</a></li>-->
+                              </ul>
+                        </div>
+                      </div>
+
+                      <div class="col-3 ms-3">
+                          <p class="small mb-0">Returns</p>
+                          <p class="fw-bold">& Orders</p>
+                      </div>
+                      <div class="col-4 mt-0">
+                          <div>
+                              <i class="bi bi-cart mt-0 pt-0" style="font-size:30px;"></i>
+                              <span class="mb-0 pb-0 text-primary fw-bold">0</span>
+                          </div>
+
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </header>
+
+
+<!--offcanvas-->
+<nav class="navbar navbar-dark bg-secondary" aria-label="Light offcanvas navbar">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight" aria-controls="offcanvasNavbarLight">
+        <span style="font-size:40px;"><i class="bi bi-list text-white"></i></span>
+      </button>
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbarLight" aria-labelledby="offcanvasNavbarLightLabel">
+        <div class="offcanvas-header bg-dark text-white">
+          <h5 class="offcanvas-title " id="offcanvasNavbarLightLabel">Hello, Sign In</h5>
+          <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body ">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% for category in categories %}
+                    <li class="nav-item">
+                      <a class="nav-link text-dark fw-bold" href="{{category.get_absolute_url}}">{{category.name}}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+      </div>
+    </div>
+  </nav>

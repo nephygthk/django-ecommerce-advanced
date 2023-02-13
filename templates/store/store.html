@@ -1,0 +1,27 @@
+{% extends "../base.html" %}
+{% block title %}Product By Categories {% endblock %}
+
+{% block sub_content %}
+<div class="card text-center shadow">
+    <div class="card-body">
+        <h4 class="pt-0 card-title">{{category.name}}</h4>
+    </div>
+</div>
+
+<div class="row pt-4">
+    {% for product in products %}
+    <div class="col-4 col-md-3 col-lg-2">
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              
+              <p class="card-text small">{{product.name|slice:":20"}}...</p>
+              <h5 class="card-title">&#8358;20,000</h5>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

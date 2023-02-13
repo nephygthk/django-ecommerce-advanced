@@ -1,0 +1,25 @@
+{% extends "../base.html" %}
+{% block title %}Product By Categories {% endblock %}
+
+{% block sub_content %}
+<div class="row">
+    <div class="col-md-3">
+        <ol class="list-group">
+        <li class="list-group-item active fw-bold bg-secondary border-0">{{category.name}}</li>
+          {% for sub in sub_categories %}
+          <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <a class="fw-bold text-decoration-none text-dark">{{sub.name}}</a>
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+    </div>
+    <div class="col-md-9">
+        {% for product in products %}
+            {{product.name}}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

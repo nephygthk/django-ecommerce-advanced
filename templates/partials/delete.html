@@ -1,0 +1,77 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<script>
+$("[id^='target']").click(function(){
+    const slug = $(this).data('index');
+    const url = "{% url 'core:load_ajax'%}";
+    $.ajax({
+        url: url,
+        data: {
+            'slug': slug
+        },
+        success: function(data) {
+            console.log(data)
+            document.querySelector('#sub-cat').innerHTML = data
+        }
+    });
+});
+</script>
+{% endblock %}
+
+<!--    function getCookie(name) {-->
+<!--        var cookieValue = null;-->
+<!--        if (document.cookie && document.cookie !== '') {-->
+<!--          var cookies = document.cookie.split(';');-->
+<!--          for (var i = 0; i < cookies.length; i++) {-->
+<!--            var cookie = cookies[i].trim();-->
+<!--            if (cookie.substring(0, name.length + 1) === (name + '=')) {-->
+<!--              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));-->
+<!--              break;-->
+<!--            }-->
+<!--          }-->
+<!--        }-->
+<!--        return cookieValue;-->
+<!--      }-->
+<!--      var csrfToken = getCookie('csrftoken');-->
+
+<!--    let categoryBtn = document.querySelectorAll("[id^='target']")-->
+<!--    categoryBtn.forEach(function(btn,i) {-->
+<!--        btn.addEventListener('click', function(){-->
+<!--        let categorySlug = btn.getAttribute('data-index')-->
+<!--        let url = "{% url 'core:sub_categories'%}";-->
+<!--        let options = {-->
+<!--            method: "POST",-->
+<!--            headers: {-->
+<!--                "content-type": "application/json",-->
+<!--                "X-CSRFToken": csrfToken-->
+<!--                },-->
+<!--            body: JSON.stringify({slug: categorySlug})-->
+<!--        };-->
+<!--        fetch(url, options)-->
+<!--        .then(res => res.json())-->
+<!--        .then(d => { console.log(d)})-->
+<!--        .catch(error => console.log(error));-->
+<!--        })-->
+<!--    })-->
+
+
+
+
+
+
+
+
+
+
+
+let categoryBtn = document.querySelectorAll("[id^='target']")
+    categoryBtn.forEach(function(btn,i) {
+        btn.addEventListener('click', function(){
+        console.log(i +1);
+        console.log(btn.id);
+        console.log(btn.getAttribute('data-index'));
+        })
+    })
+
