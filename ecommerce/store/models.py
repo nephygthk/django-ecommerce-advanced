@@ -10,12 +10,9 @@ from ecommerce.category.models import Category
 
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name='name', help_text='Required')
-    web_id = models.CharField(unique=True)
+    web_id = models.CharField(unique=True, max_length=80, null=True, blank=True)
     slug = models.SlugField(max_length=255, null=True, blank=True)
-    description = models.TextField(verbose_name='description', help_text='Not required')
-    store_price = models.IntegerField(verbose_name='Regular price', help_text='price must not be less than 0')
-    discount_price = models.IntegerField(verbose_name='Discount price', help_text='price must not be less than 0')
-    is_active = models.BooleanField(defult=True)
+    description = models.TextField(verbose_name='description', help_text='Not required', null=True, blank=True)
 
     # relations
     category = models.ForeignKey(Category, related_name="product", on_delete=models.CASCADE)
@@ -38,7 +35,25 @@ class Product(models.Model):
             self.date_created = timezone.localtime(timezone.now())
         self.slug = slugify("{} {} {}".format(self.name, self.web_id, self.unique_id))
         self.date_updated = timezone.localtime(timezone.now())
-        super(Category, self).save(*args, **kwargs)
+        super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
+    
+
+class ProductInventory(models.Model):
+    sku = models.CharField(max_length=20, unique=True, help_text="stock keeping price", null=True)
+    upi = models.CharField(max_length=30, unique=True, help_text="universal product id", null=True)
+    store_price = models.IntegerField(verbose_name='Regular store price', help_text='price must not be less than 0')
+    sale_price = models.IntegerField(verbose_name='sale price', help_text='price must not be less than 0')
+    is_active = models.BooleanField(default=True, verbose_name="product visibility", help_text="checking: True= Product visible")
+    is_default = models.BooleanField(default=False, verbose_name="default selection", help_text="Format: true= sub product selected")
+    date_created = models.DateTimeField(auto_now_add=True, verbose_name="date sub-product created")
+    date_updated = models.DateTimeField(auto_now=True, verbose_name="date sub-product updated")
+
+    # relations
+    product = models.ForeignKey(Product, related_name="product", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.product.name
+    

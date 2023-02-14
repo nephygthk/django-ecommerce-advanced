@@ -2,7 +2,6 @@ import pytest
 # from django.utils import timezone
 
 from ecommerce.category.models import Category, Brand
-from ecommerce.store.models import Product
 
 
 @pytest.fixture
@@ -16,13 +15,3 @@ def single_category(db):
 def single_brand(db):
     brand = Brand.objects.create(name="Samsung", slug="samsung")
     return brand
-
-
-
-@pytest.fixture
-def single_product(db, single_category):
-    new_category = single_category
-    new_product = Product.objects.create(name="iphone6", category=new_category)
-    return new_product
-
-
