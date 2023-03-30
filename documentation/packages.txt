@@ -3,3 +3,4 @@ pytest-django
 coverage
 factory-boy
 pytest-factoryboy
+pillow

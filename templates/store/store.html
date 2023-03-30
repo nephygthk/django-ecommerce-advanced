@@ -12,12 +12,17 @@
     {% for product in products %}
     <div class="col-4 col-md-3 col-lg-2">
         <div class="card">
-            <img src="..." class="card-img-top" alt="...">
+            <!-- {% for image in product.media_product_inventory.all %}
+                {% if image.is_feature %}
+                <img src="{{image.img_url.url}}" class="card-img-top" alt="{{image.alt_text}}">
+                {% endif %}
+            {% endfor %} -->
+            <img src="{{product.image.url}}" class="card-img-top" alt="{{image.alt_text}}">
             <div class="card-body">
               
               <p class="card-text small">{{product.name|slice:":20"}}...</p>
-              <h5 class="card-title">&#8358;20,000</h5>
-              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              <h5 class="card-title">&#8358;{{product.main_price}}</h5>
+              <a href="{% url 'store:product_detail' product.slug %}" class="btn btn-secondary w-100 fw-bold">View Detail</a>
             </div>
         </div>
     </div>
